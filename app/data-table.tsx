@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
     //measure dynamic row height, except in firefox because it measures table border height incorrectly
     measureElement:
       typeof window !== "undefined" &&
-      navigator.userAgent.indexOf("Firefox") === -1
+        navigator.userAgent.indexOf("Firefox") === -1
         ? (element: any) => element?.getBoundingClientRect().height
         : undefined,
     overscan: 5,
@@ -85,12 +85,11 @@ export function DataTable<TData, TValue>({
 
   return (
     <div
-      className="rounded-md border"
+      className="rounded-md border flex-grow"
       ref={tableContainerRef}
       style={{
         overflow: "auto", //our scrollable table container
         position: "relative", //needed for sticky header
-        height: "600px", //should be a fixed height
       }}
     >
       <div className="flex items-center py-1">
@@ -129,9 +128,9 @@ export function DataTable<TData, TValue>({
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
                   </TableHead>
                 );
               })}
@@ -175,12 +174,12 @@ export function DataTable<TData, TValue>({
               </TableRow>
             );
           }) ?? (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
         </TableBody>
       </Table>
     </div>
